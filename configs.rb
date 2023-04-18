@@ -1,7 +1,7 @@
 module Configs
   CONSOLE_CONFIGS = {
     "title" => "Example Julian!",
-    "background" => "blue",
+    "background" => "black",
     "diagnostics" => true,
     "resizable" => true,
     "pixel_size" => 20,
