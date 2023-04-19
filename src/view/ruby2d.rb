@@ -4,7 +4,8 @@ require_relative "../model/state"
 
 module View
   class Ruby2dView
-    def initialize
+    def initialize( app )
+      @app = app
       @configs = Configs::CONSOLE_CONFIGS
       @pixel_size = @configs[ "pixel_size" ]
     end
@@ -21,6 +22,12 @@ module View
         :width => @configs[ "pixel_size" ] * state.grid.cols,
         :height => @configs[ "pixel_size" ] * state.grid.rows
       } )
+
+      # Clickboard
+      on :key_down do | event |
+        puts event.key
+        handle_key_event( event.key )
+      end
 
       # Show App
       show
@@ -72,6 +79,19 @@ module View
           size: @pixel_size,
           color: color
         )
+      end
+    end
+
+    def handle_key_event( key )
+      case key
+        when 'left', 'a'
+          @app.send_action( :change_direction, Model::Direction::LEFT )
+        when 'right', 'd'
+          @app.send_action( :change_direction, Model::Direction::RIGHT )
+        when 'up', 'w'
+          @app.send_action( :change_direction, Model::Direction::UP )
+        when 'down', 's'
+          @app.send_action( :change_direction, Model::Direction::DOWN )
       end
     end
   end
