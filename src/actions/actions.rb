@@ -1,3 +1,5 @@
+require_relative "../model/state"
+
 module Actions
   def self.move_snake( state )
     next_direction = state.current_direction
