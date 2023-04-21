@@ -9,15 +9,22 @@ class App
   end
 
   def start
-    Thread.new { init_timer( @view ) }
+    timer_thread = Thread.new { init_timer( @view ) }
 
     # Init view
     @view.start( @state )
-    # view.render_view( @state )
+    timer_thread.join
   end
 
   def init_timer( view )
     loop do
+      if @state.game_finished
+        score = @state.snake.positions.length
+        puts "GAME OVER!"
+        puts "Score: #{score}"
+        break
+      end
+
       @state = Actions::move_snake( @state )
       view.render_view( @state )
       sleep 0.08

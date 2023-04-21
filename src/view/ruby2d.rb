@@ -25,7 +25,7 @@ module View
 
       # Clickboard
       on :key_down do | event |
-        puts event.key
+        # puts event.key
         handle_key_event( event.key )
       end
 
@@ -35,6 +35,8 @@ module View
 
     def render_view( state )
       extend Ruby2D::DSL
+
+      close if state.game_finished
 
       # Render objects
       render_food( state )
