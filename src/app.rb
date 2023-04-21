@@ -20,7 +20,7 @@ class App
     loop do
       @state = Actions::move_snake( @state )
       view.render_view( @state )
-      sleep 0.05
+      sleep 0.08
     end
   end
 
