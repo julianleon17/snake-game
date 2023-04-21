@@ -63,7 +63,7 @@ module Actions
   def self.change_direction( state, direction )
     if next_direction_is_valid?( state, direction )
       state.current_direction = direction
-      puts 'Valid direction!'
+      # puts 'Valid direction!'
     else
       puts 'Invalid direction!'
     end
