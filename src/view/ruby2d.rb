@@ -34,6 +34,8 @@ module View
     end
 
     def render_view( state )
+      extend Ruby2D::DSL
+
       # Render objects
       render_food( state )
       render_snake( state )
@@ -42,9 +44,8 @@ module View
     private
 
     def render_food( state )
-      @food.remove if @food
-
       extend Ruby2D::DSL
+      @food.remove if @food
 
       food = state.food
       color = "yellow"
@@ -58,6 +59,7 @@ module View
     end
 
     def render_snake( state )
+      extend Ruby2D::DSL
       # if @snake_positions
       #   @snake_positions.each do |position|
       #     position.remove
@@ -66,8 +68,6 @@ module View
 
       # This line do the same thing that the previous block
       @snake_positions.each( &:remove ) if @snake_positions
-
-      extend Ruby2D::DSL
 
       snake = state.snake
       color = "green"
